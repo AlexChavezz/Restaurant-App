@@ -1,15 +1,9 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router'
+import { Navigate } from 'react-router-dom';
 
-export const PublicRoutes = ({ isLoggedIn, component: Component, ...rest }) => {
-    return (
-        <Route {...rest}
-        component={ props => 
-            (!isLoggedIn) ?
-                (<Component {...props} />)
-                :
-                (<Redirect to="/" />)
-        }
-    />
-    )
+export const PublicRoutes = ({children, isLoggedIn}) => {
+    return !isLoggedIn?
+        children
+        :
+        <Navigate to="/" />
 }

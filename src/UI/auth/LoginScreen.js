@@ -4,9 +4,9 @@ import passwordLogo from '../../pictures/password.svg';
 import presentation from '../../pictures/undraw_eating_together_re_ux62.svg';
 import { useForm } from '../../hooks/useForm';
 import arrow from '../../pictures/arrow_back.svg';
-import { useHistory } from 'react-router';
-export const LoginScreen = () => {
+import { useNavigate } from 'react-router-dom';
 
+export const LoginScreen = () => {
 
     const [values, handleInputChange] = useForm({
         user:'',
@@ -18,9 +18,9 @@ export const LoginScreen = () => {
         e.preventDefault();
         console.log(user, password)
     }
-    const history = useHistory();
+    const navigate = useNavigate();
     const handleBack = () => {
-        history.goBack();
+        navigate(-1);
     }
 
     return (

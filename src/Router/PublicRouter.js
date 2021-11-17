@@ -1,15 +1,17 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { LoginScreen } from '../UI/auth/LoginScreen';
 import { InitialScreen } from '../UI/Initial_Screen/InitialScreen';
+import { ElementScreen } from '../UI/MenuScreen/ElementScreen';
 import { MenuScreen } from '../UI/MenuScreen/MenuScreen';
 
 export const PublicRouter = () => {
     return (
-        <Switch>
-            <Route exact path="/public" component={InitialScreen} />
-            <Route path="/public/auth" component={LoginScreen} />
-            <Route path="/public/menu" component={MenuScreen} />
-        </Switch>
+        <Routes>
+            <Route path="/" element={<InitialScreen/>} />
+            <Route path="/auth" element={<LoginScreen/>}/>
+            <Route path="/menu" element={<MenuScreen/>} />
+            <Route path="menu/:elementId" element={<ElementScreen />} />
+        </Routes>
     )
 }

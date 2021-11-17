@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
+    BrowserRouter,
+    Routes,
+    Route
 } from "react-router-dom";
 import { HomeScreen } from '../UI/Home/HomeScreen';
 import { PrivateRoutes } from './PrivateRoutes';
@@ -11,11 +12,21 @@ import { PublicRouter } from './PublicRouter';
 export const AppRouter = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     return (
-        <Router>
-            <div>
-                
-                <Switch>
-                    <PublicRoutes
+        <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={
+                        <PrivateRoutes isLoggedIn={isLoggedIn}>
+                            <HomeScreen />
+                        </PrivateRoutes>} 
+                    />
+                    <Route path="/public/*" element={
+                        <PublicRoutes isLoggedIn={isLoggedIn}>
+                            <PublicRouter />
+                        </PublicRoutes>
+
+                    }
+                    />
+                    {/* <PublicRoutes
                         path="/public"
                         component={PublicRouter}
                         isLoggedIn={isLoggedIn}
@@ -25,9 +36,8 @@ export const AppRouter = () => {
                         path="/"
                         component={HomeScreen}
                         isLoggedIn={isLoggedIn}
-                    />
-                </Switch>
-            </div>
-        </Router>
+                    /> */}
+                </Routes>
+        </BrowserRouter>
     )
 }
