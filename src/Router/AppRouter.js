@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     BrowserRouter,
     Routes,
     Route
 } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { HomeScreen } from '../UI/Home/HomeScreen';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 import { PublicRouter } from './PublicRouter';
+import { getElementsAsync } from '../actions/actionElements';
 
 export const AppRouter = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const dispatch = useDispatch();
+     useEffect(() => {
+       dispatch(getElementsAsync());
+     },[dispatch]);
+
     return (
         <BrowserRouter>
                 <Routes>
                     <Route path="/" element={
                         <PrivateRoutes isLoggedIn={isLoggedIn}>
                             <HomeScreen />
-                        </PrivateRoutes>} 
+                        </PrivateRoutes>}
                     />
                     <Route path="/public/*" element={
                         <PublicRoutes isLoggedIn={isLoggedIn}>
