@@ -42,7 +42,7 @@ export const ShopScreen = () => {
                                         COSTO
                                     </th>
                                     <th>
-                                        ACTIONS
+                                        OPCIONES
                                     </th>
                                 </tr>
                             </thead>
@@ -58,7 +58,7 @@ export const ShopScreen = () => {
                         <button
                             className="btn btn-primary"
                         >
-                            COMPRAR
+                            ORDENAR
                         </button>
                     </article>
             }

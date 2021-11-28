@@ -8,7 +8,10 @@ export const elementReducer = (state = initialState, action) => {
         return {
           state: action.payload
         }
-
+        case types.updateElement:
+        return {
+            state: state.state.map(element => element.idMenu === action.payload.idMenu? action.payload:element)
+          }
 
       default:
         return state;

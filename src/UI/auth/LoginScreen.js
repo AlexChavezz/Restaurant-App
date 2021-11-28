@@ -5,9 +5,11 @@ import presentation from '../../pictures/undraw_eating_together_re_ux62.svg';
 import { useForm } from '../../hooks/useForm';
 import arrow from '../../pictures/arrow_back.svg';
 import { useNavigate } from 'react-router-dom';
+import { loginWhitEmailAndPasswordAsync } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
 
 export const LoginScreen = () => {
-
+    const dispatch = useDispatch();
     const [values, handleInputChange] = useForm({
         user:'',
         password:'',
@@ -16,7 +18,8 @@ export const LoginScreen = () => {
     
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(user, password)
+        dispatch(loginWhitEmailAndPasswordAsync(user, password));
+
     }
     const navigate = useNavigate();
     const handleBack = () => {

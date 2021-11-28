@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { removeElement } from '../../actions/cartActions';
 
-export const ShowElemets = ({title, price, id, setTotal}) => {
+export const ShowElemets = ({name, price, id, setTotal}) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
@@ -17,7 +17,7 @@ export const ShowElemets = ({title, price, id, setTotal}) => {
     return (
         <tr>
             <td>
-                {title}
+                {name}
             </td>
             <td>
                 $ {price}

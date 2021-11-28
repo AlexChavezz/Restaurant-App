@@ -8,22 +8,24 @@ import cart_shopping from '../../pictures/shopping_cart.svg';
 import { Link } from 'react-router-dom';
 import { pushElement } from '../../actions/cartActions';
 import uniqid from 'uniqid';
+import { elementToBuy } from '../../actions/buyActions';
+
 export const ElementScreen = () => {
+
   const { state: elements } = useSelector(state => state.elements);
+  const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const params = useParams();
   const elementTofind = params.elementId;
   const element = getElementById(elementTofind, elements);
   const navigate = useNavigate();
-  const cart = useSelector(state => state.cart)
+
   const handleBack = () => {
     navigate(-1);
   }
-  const handleBuy = (e) => {
-    console.log(e.target.disabled)
-    if (e.target.disabled === true) {
-      console.log('no se puede')
-    }
+
+  const handleBuy = () => {
+    dispatch(elementToBuy(element));
   }
 
   const handleAddElementToCart = () => {
@@ -31,10 +33,7 @@ export const ElementScreen = () => {
       id: uniqid(),
       ...element
     }));
-
   }
-
-
   return (
     <section className="container_element">
       <article
@@ -65,13 +64,17 @@ export const ElementScreen = () => {
       </Link>
       <article className="info_element">
         <article className="img_element">
-          {<img src={element.photo} alt={element.title} />}
+          {<img src={element.photo} alt={element.name} />}
         </article>
         <article className="description_element">
-          <h3><b>Nombre:</b> {element.title}</h3>
+          <h3><b>Nombre:</b> {element.name}</h3>
           <p><b>Descripción</b>: {element.description}</p>
           <div className="from">
-            <p><b>NACIONALIDAD: </b>   {element.country}                   </p>
+            <p>
+              <b>NACIONALIDAD:
+              </b>
+              {element.country}
+            </p>
             <img src={element.flagge} alt={element.country} />
           </div>
           <div className="buttons_container">
@@ -80,7 +83,7 @@ export const ElementScreen = () => {
                 className="btn btn-primary"
                 onClick={handleBuy}
               >
-                Comprar  ${element.price}
+                Ordenar  ${element.price}
               </button>
             </Link>
             <button

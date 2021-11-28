@@ -9,7 +9,6 @@ export const MenuScreen = () => {
 
   const { state } = useSelector(state => state.elements);
   const cart = useSelector(state => state.cart)
-  console.log(cart)
   if (!state) {
     return (
       <div></div>
@@ -48,7 +47,7 @@ export const MenuScreen = () => {
       </article>
       <article className="container_food">
         {
-          state.map(element => <ElementList {...element} key={element.idmenu} />)
+          state.map(element => <ElementList {...element} key={element.idMenu} />)
         }
       </article>
     </section>
