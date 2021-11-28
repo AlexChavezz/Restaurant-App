@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 export const loginWhitEmailAndPasswordAsync = (userName, password) => {
     return (dispatch) => {
         try {
-            fetch('http://localhost:8080/api/users', {
+            fetch('http://localhost:8080/api/users/get', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

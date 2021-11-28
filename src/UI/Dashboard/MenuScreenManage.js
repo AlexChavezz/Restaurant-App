@@ -8,10 +8,10 @@ export const MenuScreenManage = () => {
 
     return (
         <article>
-            <article className="menu_screen_manage_title">
+            <article className="screen_manage_title">
                 <h2>CONTROL DEL MENU</h2>
             </article>
-            <article className="menu_screen_manage_content">
+            <article className="screen_manage_content">
                 {
                     state.map( element => <MenuList {...element} key={element.idMenu}/>)
                 }

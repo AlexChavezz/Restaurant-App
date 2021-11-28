@@ -29,14 +29,13 @@ export const MenuList = (props) => {
         }
         dispatch(updateElement(newElement));
         try {
-            const response = await fetch(`http://localhost:8080/api/menu/${props.idMenu}`, {
+            await fetch(`http://localhost:8080/api/menu/${props.idMenu}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newElement)
             });
-            const data = response.json();
         } catch (error) {
             console.log(error);
         }
