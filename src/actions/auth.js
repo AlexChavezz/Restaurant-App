@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 export const loginWhitEmailAndPasswordAsync = (userName, password) => {
     return (dispatch) => {
         try {
-            fetch('http://localhost:8080/api/users/get', {
+            fetch('https://restaurant-bac.herokuapp.com/api/users/get', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

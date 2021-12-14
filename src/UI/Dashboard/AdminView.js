@@ -6,13 +6,13 @@ export const AdminView = () => {
     const [ state, setstate ] = useState(false);
     const [ users, setUsers ] = useState([])
     const [ values, handleInputChange, reset ] = useForm({
-        name: '',
+        userName: '',
         password: '',
         role: 'employed',
     });
-    const { name, password, role } = values;
+    const { userName, password, role } = values;
     useEffect(() => {
-        fetch('http://localhost:8080/api/users/get')
+        fetch('https://restaurant-bac.herokuapp.com/api/users/get')
             .then(response => response.json())
             .then(({ users }) => setUsers(users))
     }, [])
@@ -20,7 +20,7 @@ export const AdminView = () => {
     const handleAddNewUser = (e) => {
         e.preventDefault();
         const msg = role === 'admin' ? "Nuevo Administrador Añadido" : "Nuevo Empleado Añadido";
-        fetch('http://localhost:8080/api/users/post', {
+        fetch('https://restaurant-bac.herokuapp.com/api/users/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,11 @@ export const AdminView = () => {
             body: JSON.stringify(values)
         })
             .then(response => response.json())
-            .then((response) => {
+            .then(({uid}) => {
+                setUsers([...users, {
+                    ...values,
+                    uid,
+                }]);
                 Swal.fire({
                     icon: 'success',
                     text: msg,
@@ -64,8 +68,8 @@ export const AdminView = () => {
                             <input
                                 type="text"
                                 id="user-name"
-                                name="name"
-                                value={name}
+                                name="userName"
+                                value={userName}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -109,7 +113,7 @@ export const AdminView = () => {
                         </thead>
                         <tbody>
                             {
-                                users.map(element => <UsersMap {...element} key={element.uid} />)
+                                users.map(element => <UsersMap {...element} key={element.uid} setUsers={setUsers} users={users} />)
                             }
                         </tbody>
                     </table>

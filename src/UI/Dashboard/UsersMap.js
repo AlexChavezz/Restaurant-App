@@ -1,37 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2';
+import visibilityOn from '../../pictures/outline_visibility_black_24dp.png';
+import visivilityOff from '../../pictures/outline_visibility_off_black_24dp.png';
+
 
 export const UsersMap = (props) => {
-    const {role, userName} = useSelector(state => state.auth);
+
+    const [visivility, setVisivility] = useState(false);
+    const { role, userName } = useSelector(state => state.auth);
     const handleDeleteUser = () => {
-        if( props.userName === userName && props.role === role ){
+        if (props.userName === userName && props.role === role) {
             Swal.fire({
-                icon:'error',
-                text:'No puedes eliminar este usuario'
+                icon: 'error',
+                text: 'No puedes eliminar este usuario'
             });
-        }else{
-            fetch(`http://localhost:8080/api/users/delete/${props.uid}`, {
+        } else {
+            fetch(`https://restaurant-bac.herokuapp.com/api/users/delete/${props.uid}`, {
                 method: 'DELETE'
             })
-            .then((response) => response.json())
-            .then(({message}) => {
-                Swal.fire({
-                    icon:'success',
-                    text: message && 'Usuario eliminado correctamente'
-                });
-            })    
+                .then((response) => response.json())
+                .then(({ message }) => {
+                    props.setUsers(props.users.filter(user => user.uid !== props.uid));
+                    Swal.fire({
+                        icon: 'success',
+                        text: message && 'Usuario eliminado correctamente'
+                    });
+                })
         }
     }
+
+    const handleChangeVisivility = () => {
+        setVisivility(!visivility);
+    }
+
     return (
         <tr>
             <td>{props.userName}</td>
-            <td>{props.password}</td>
+            <td>
+                <div>
+                    <input type={visivility? 'text': 'password'} value={props.password} disabled={true} />
+                  {  
+                  visivility?
+                  <img 
+                  src={visivilityOff} 
+                  alt="visivilityOff" 
+                  onClick={handleChangeVisivility}
+                  />
+                  :
+                  <img 
+                    src={visibilityOn} 
+                    alt="visibilityOn" 
+                    onClick={handleChangeVisivility}
+                    />}
+                </div>
+            </td>
             <td>{props.role}</td>
             <td>
                 <button
-                className="btn btn-danger"
-                onClick={handleDeleteUser}
+                    className="btn btn-danger"
+                    onClick={handleDeleteUser}
                 >
                     Eliminar Usuario
                 </button>

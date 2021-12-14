@@ -3,7 +3,7 @@ import { types } from '../types/types';
 export const getElementsAsync = () => {
   return async (dispatch) => {
     try {
-      const response  = await fetch('http://localhost:8080/api/menu');
+      const response  = await fetch('https://restaurant-bac.herokuapp.com/api/menu');
       const data = await response.json();
       dispatch(getElements(data));
     } catch (e) {

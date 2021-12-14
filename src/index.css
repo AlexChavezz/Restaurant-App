@@ -752,10 +752,35 @@ section .screen_manage_content .table-users-container
     width: 100% !important;
     box-shadow: none !important;
 }
+section .screen_manage_content .table-users-container tbody tr td > div
+{
+    width:100%;
+    height: 100%;
+    position: relative;
+}
+
 section .screen_manage_content .table-users-container tbody tr td
 {
     text-align:center;
     text-transform:none;
+}
+
+section .screen_manage_content .table-users-container tbody tr td input
+{
+    padding: 10px 10px 10px 30px;
+    margin: 20px 0px;
+    width: 100%;
+}
+section .screen_manage_content .table-users-container tbody tr td img 
+{
+    right:10px;
+    top:27px;
+    position: absolute;
+    width:25px;
+}
+section .screen_manage_content .table-users-container tbody tr td img:active
+{
+    transform: scale(.8)
 }
 
 /* section .screen_manage_content .table_users
