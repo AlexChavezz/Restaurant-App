@@ -7,14 +7,14 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
     switch (action?.type) {
         case types.pushToCart:
-        if (state.state === []) {
+            if (state.state === []) {
                 return {
-                    state: [ action.payload ]                    
-                    }
+                    state: [action.payload]
+                }
             } else {
                 return {
                     ...state,
-                    state: [ ...state.state, action.payload ]
+                    state: [...state.state, action.payload]
                 }
             }
         case types.removeElement:
@@ -22,7 +22,10 @@ export const cartReducer = (state = initialState, action) => {
                 ...state,
                 state: (state.state.filter(element => element.id !== action.payload))
             }
-            default:
+        case types.removeAllElements:
+            return initialState;
+        
+        default:
             return state;
     }
 }

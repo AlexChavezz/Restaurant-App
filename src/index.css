@@ -454,6 +454,11 @@ SHOPPING SCREEN
     margin-top:75px;
     transition: all .1s ease-in;
 }
+.shopping_screen .shop_screen_content a
+{
+    text-align:center;
+}
+
 table
 {
     width:100%;

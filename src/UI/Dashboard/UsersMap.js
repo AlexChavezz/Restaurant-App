@@ -9,6 +9,7 @@ export const UsersMap = (props) => {
 
     const [visivility, setVisivility] = useState(false);
     const { role, userName } = useSelector(state => state.auth);
+
     const handleDeleteUser = () => {
         if (props.userName === userName && props.role === role) {
             Swal.fire({
@@ -33,7 +34,6 @@ export const UsersMap = (props) => {
     const handleChangeVisivility = () => {
         setVisivility(!visivility);
     }
-
     return (
         <tr>
             <td>{props.userName}</td>
@@ -43,13 +43,13 @@ export const UsersMap = (props) => {
                   {  
                   visivility?
                   <img 
-                  src={visivilityOff} 
+                  src={visibilityOn} 
                   alt="visivilityOff" 
                   onClick={handleChangeVisivility}
                   />
                   :
                   <img 
-                    src={visibilityOn} 
+                    src={visivilityOff} 
                     alt="visibilityOn" 
                     onClick={handleChangeVisivility}
                     />}

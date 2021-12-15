@@ -1,14 +1,31 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ElementList } from './ElementList';
 import arrow from '../../pictures/arrow_back.svg';
 import cart_shopping from '../../pictures/shopping_cart.svg';
+import { getRandomNumber } from '../../helpers/getRandomNumber';
+import Swal from 'sweetalert2';
+import { setTableNumberAction } from '../../actions/tableNumber';
 
 export const MenuScreen = () => {
-
+  const dispatch = useDispatch();
   const { state } = useSelector(state => state.elements);
-  const cart = useSelector(state => state.cart)
+  const cart = useSelector(state => state.cart);
+  const tableNumber = useSelector(state => state.tableNumber);
+  console.log(tableNumber)
+  useEffect(() => {
+    if (!tableNumber) {
+      const number = getRandomNumber();
+      dispatch(setTableNumberAction(number));
+      Swal.fire({
+        title: 'BIENVENIDO',
+        text: 'Tu numero de mesa es: ' + number
+      });
+    }
+
+  }, [dispatch,tableNumber])
+
   if (!state) {
     return (
       <div></div>
