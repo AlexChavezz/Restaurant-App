@@ -3,15 +3,12 @@
   "productName": "restaurant",
   "version": "0.1.0",
   "private": true,
-  "main": "public/electron.js",
   "homepage": "./",
   "description": "description",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "electron-installer-debian": "^3.1.0",
-    "electron-is-dev": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
@@ -25,14 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "create-debian-installer": "electron-installer-debian --src release-builds/electron-tutorial-app-linux-x64/ --arch amd64 --config debian.json",
-    "package": "electron-forge make"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -52,18 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "concurrently": "^6.4.0",
-    "electron": "^15.3.1",
-    "electron-builder": "^22.10.5",
-    "electron-forge": "^5.2.4",
-    "electron-packager": "^15.4.0",
-    "electron-prebuilt-compile": "^2.0.16",
-    "wait-on": "^6.0.0"
-  },
-  "author": "alexis_chavez",
-  "build": {
-    "appId": "enupal-electronv1",
-    "productName": "restaurante"
-  }
+  "author": "alexis_chavez"
 }

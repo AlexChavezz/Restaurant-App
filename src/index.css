@@ -571,7 +571,6 @@ DASHBOARD
     margin-left:80px;
     display: flex;
     flex-direction: column;
-    justify-content:center;
     align-items:center;
 }
 .dashboard_screen article .screen_manage_title
