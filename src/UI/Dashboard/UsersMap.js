@@ -17,7 +17,7 @@ export const UsersMap = (props) => {
                 text: 'No puedes eliminar este usuario'
             });
         } else {
-            fetch(`https://restaurant-bac.herokuapp.com/api/users/delete/${props.uid}`, {
+            fetch(`https://restaurant-app1.azurewebsites.net/api/users/delete/${props.uid}`, {
                 method: 'DELETE'
             })
                 .then((response) => response.json())

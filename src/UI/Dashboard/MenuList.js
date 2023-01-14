@@ -29,7 +29,7 @@ export const MenuList = (props) => {
         }
         dispatch(updateElement(newElement));
         try {
-            await fetch(`https://restaurant-bac.herokuapp.com/api/menu/${props.idMenu}`, {
+            await fetch(`https://restaurant-app1.azurewebsites.net/api/menu/${props.idMenu}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

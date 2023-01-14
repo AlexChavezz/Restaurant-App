@@ -12,7 +12,7 @@ export const AdminView = () => {
     });
     const { userName, password, role } = values;
     useEffect(() => {
-        fetch('https://restaurant-bac.herokuapp.com/api/users/get')
+        fetch('https://restaurant-app1.azurewebsites.net/api/users/get')
             .then(response => response.json())
             .then(({ users }) => setUsers(users))
     }, [])
@@ -20,7 +20,7 @@ export const AdminView = () => {
     const handleAddNewUser = (e) => {
         e.preventDefault();
         const msg = role === 'admin' ? "Nuevo Administrador Añadido" : "Nuevo Empleado Añadido";
-        fetch('https://restaurant-bac.herokuapp.com/api/users/post', {
+        fetch('https://restaurant-app1.azurewebsites.net/api/users/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
