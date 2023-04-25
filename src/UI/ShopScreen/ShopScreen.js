@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import arrow from '../../pictures/arrow_back.svg';
-import cart_empty from '../../pictures/empty_cart.svg';
 import { ShowElemets } from './ShowElemets';
 import foodImgUrl from '../../pictures/undraw_breakfast_psiw.svg';
 import { resetTableNumber } from '../../actions/tableNumber';
 import { Link } from 'react-router-dom';
 import { removeAllElements } from '../../actions/cartActions';
+import cart_empty from '../../pictures/empty_cart.svg';
 
 export const ShopScreen = () => {
 
